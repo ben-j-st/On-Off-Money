@@ -33,7 +33,6 @@ function saveRecord(record) {
 }
 
 function checkDatabase() {
-  console.log("We online")
   // open a transaction on your pending db
   const transaction = db.transaction(["pending"], "readwrite");
   // access your pending object store
@@ -66,10 +65,5 @@ function checkDatabase() {
   };
 }
 
-function checkOffline() {
-  console.log("offline bitches")
-}
-
 // listen for app coming back online
 window.addEventListener("online", checkDatabase);
-window.addEventListener("offline", checkOffline);
