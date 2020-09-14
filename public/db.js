@@ -33,6 +33,7 @@ function saveRecord(record) {
 }
 
 function checkDatabase() {
+  console.log("We online")
   // open a transaction on your pending db
   const transaction = db.transaction(["pending"], "readwrite");
   // access your pending object store
@@ -42,7 +43,7 @@ function checkDatabase() {
 
   getAll.onsuccess = function() {
     if (getAll.result.length > 0) {
-      fetch("/api/transaction/bulk", {
+      fetch("/db/transaction/bulk", {
         method: "POST",
         body: JSON.stringify(getAll.result),
         headers: {
@@ -65,5 +66,10 @@ function checkDatabase() {
   };
 }
 
+function checkOffline() {
+  console.log("offline bitches")
+}
+
 // listen for app coming back online
 window.addEventListener("online", checkDatabase);
+window.addEventListener("offline", checkOffline);
